@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, Dataset
-from configs import Config
+from src.core.configs import Config
 
 class MultiTurnAdversarialDataset(Dataset):
     def __init__(self, histories, labels, tokenizer):

@@ -1,11 +1,22 @@
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).resolve().parents[2]))
+
 import json
 import re
+import os
+from src.core.paths import FITD_TRAIN_DATA
 
 def extract_from_real_logs():
+    # Parse external FITD logs into local multi-turn training json.
+    log_root = os.getenv(
+        "FITD_LOG_ROOT",
+        "/home/asus/ycy/Foot-in-the-door-Jailbreak/logs/Llama-3.1-8B-Instruct",
+    )
     LOG_PATHS = [
-        "/home/asus/ycy/Foot-in-the-door-Jailbreak/logs/Llama-3.1-8B-Instruct/0/0.log",
-        "/home/asus/ycy/Foot-in-the-door-Jailbreak/logs/Llama-3.1-8B-Instruct/0/1.log",
-        "/home/asus/ycy/Foot-in-the-door-Jailbreak/logs/Llama-3.1-8B-Instruct/1/0.log"
+        os.path.join(log_root, "0", "0.log"),
+        os.path.join(log_root, "0", "1.log"),
+        os.path.join(log_root, "1", "0.log"),
     ]
 
     train_data = []
@@ -53,7 +64,7 @@ def extract_from_real_logs():
             unique_data.append(d)
 
     # 保存
-    save_path = "/home/asus/ycy/test8/fitd_train_data.json"
+    save_path = FITD_TRAIN_DATA
     with open(save_path, "w", encoding="utf-8") as f:
         json.dump(unique_data, f, ensure_ascii=False, indent=2)
 

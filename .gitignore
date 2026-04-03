@@ -1,0 +1,25 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+
+# Local experiment outputs
+artifacts/
+out.txt
+*.log
+
+# Local/model binaries and checkpoints
+*.pt
+*.safetensors
+
+# Local datasets (keep code-only repo)
+data/*.csv
+data/*.json
+data/*.jsonl
+data/mt_bench/
+
+# Misc
+.DS_Store

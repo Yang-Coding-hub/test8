@@ -1,8 +1,13 @@
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).resolve().parents[2]))
+
 from safetensors.torch import load_file
 import os
+from src.core.configs import Config
 
 # 你的SAE根目录
-SAE_DIR = "/home/asus/ycy/sae_weights/Llama3_1-8B-Base-L15R-8x/checkpoints"
+SAE_DIR = Config.SAE_DIR
 
 # 1. 扫描目录结构
 print("===== 目录下的所有文件 =====")
